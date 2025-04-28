@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>GRBL Керування Серво Приводом</name>
+  <id>com.example.grbl.servo.controller</id>
+
+  <dependency type="executable" location="extensions">servo.py</dependency>
+
+  <!-- Параметри серво -->
+  <param name="servo-up-command" type="string" gui-text="Команда підняття серво (наприклад, M5)">M5</param>
+  <param name="servo-down-command" type="string" gui-text="Команда опускання серво (наприклад, M3)">M3</param>
+  <param name="servo-pwm" type="int" min="0" max="398" gui-text="Позиція серво PWM (0–180°)">125</param>
+
+  <!-- Параметри руху -->
+  <param name="fast-speed" type="float" min="10" max="10000" gui-text="Швидкість швидкого руху (мм/хв)">1000.0</param>
+  <param name="slow-speed" type="float" min="10" max="10000" gui-text="Швидкість повільного руху (мм/хв)">500.0</param>
+  <param name="speed-threshold" type="float" min="0" max="10" gui-text="Поріг перемикання швидкості (мм)">1.0</param>
+
+  <!-- Інші параметри -->
+  <param name="delay" type="float" min="0" max="10" gui-text="Затримка після руху (с)">0.1</param>
+  <param name="segments" type="int" min="1" max="100" gui-text="Кількість сегментів на криву">10</param>
+  <param name="directory" type="path" gui-text="Тека для збереження файлу"/>
+  <param name="filename" type="string" gui-text="Ім'я файлу">servo.gcode</param>
+  <param name="add-numeric-suffix-to-filename" type="bool" gui-text="Додавати числовий суфікс до імені файлу">true</param>
+
+  <effect>
+    <object-type>path</object-type>
+    <effects-menu>
+      <submenu name="GRBL Інструменти"/>
+    </effects-menu>
+  </effect>
+
+  <script>
+    <command reldir="extensions" interpreter="python">servo.py</command>
+  </script>
+</inkscape-extension>
